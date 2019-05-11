@@ -6,13 +6,17 @@ var moment = require ("moment");
 var spotify =  require ("node-spotify-api");
 var dotenv = require ("dotenv");
 var keys = require("./keys.js");
+var request = require("request");
+const chalk = require("chalk");
 
 
 var userCommand = process.argv[2];
 var secondCommand = process.argv[3];
+var media_array = process.argv.slice(3);
+var media = media_array.join(" ");
 
 
-for (var i = 4; < process.argv.length; i++) {
+for (var i = 4; i < process.argv.length; i++) { 
 
     secondCommand += '+' + process.argv[i];
 }
@@ -24,7 +28,7 @@ var getArtistNames = function (artist){
 };
 
 var getSpotify = function (songName){
-    if (songName ===undefined){
+    if (songName === ""){
         songName = "What's my age again";
 
     }
@@ -36,12 +40,12 @@ var getSpotify = function (songName){
         },
         function (err,data) {
             if (err) {
-                console.log("Error occured: http://www.imdb.com/title/tt0485947/ " + err);
+                console.log("Error occured:" + err);
                 return;
             }
             var songs = data.track.items;
 
-            for (var i = 0; i,< songs.length; i++){
+            for (var i = 0; i < songs.length; i++){
                 console.log(i);
 
                 console.log("artist(s):" + songs[i].artist.map(getArtistName));
@@ -82,36 +86,36 @@ function mySwitch(userCommand) {
 
     function getMovie(){
 
-        var movieName = secondCmommand;
+        var movieName = secondCommand;
         var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
 
 
-        requestAnimationFrame(queryUrl, function (error, response, body){
+        request(queryUrl, function (error, response, body){
 
             if(!error && response.statusCode === 200){
                 var body = JSON.parse(body);
 
-                logOutput("===================== Movie Info ========================");
+                console.log("===================== Movie Info ========================");
 
-                logOutput("Title: " + body.Title);
+                console.log("Title: " + body.Title);
 
-                logOutout("Release Year: " + body.Year);
+                console.log("Release Year: " + body.Year);
 
-                logOutput("IMdB Rating: " + body.imdbRating);
+                console.log("IMdB Rating: " + body.imdbRating);
 
-                logOutput("Country: " + body.Country);
+                console.log("Country: " + body.Country);
 
-                logOutput("Language: " + body.Language);
+                console.log("Language: " + body.Language);
 
-                logOutput("Plot: " + body.Plot);
+                console.log("Plot: " + body.Plot);
 
-                logOutput("Actors: " + body.Actors);
+                console.log("Actors: " + body.Actors);
 
-                logOutput("Rotten Tomatoes Rating: " + body.Ratings[2].Value);
+                console.log("Rotten Tomatoes Rating: " + body.Ratings[2].Value);
 
-                logOutput("Rotten Tomatoes URL: " + body.tomatoeURL);
+                console.log("Rotten Tomatoes URL: " + body.tomatoeURL);
 
-                logOutput('==========================THE END=========================')
+                console.log('==========================THE END=========================')
 
             } else {
                 console.log("Error occured.")
@@ -120,7 +124,7 @@ function mySwitch(userCommand) {
 
             if(movieName === "Mr.Nobody"){
                 console.log("------------------------------");
-                console.log("If you haven't watched 'Mr. Nobody', then you should:");
+                console.log("If you haven't watched 'Mr. Nobody', then you should:http://www.imdb.com/title/tt0485947/");
                 console.log("It's on Netflix!");
 
             }
@@ -128,6 +132,58 @@ function mySwitch(userCommand) {
     }
 
     function concertThis(){
+
+        if (media == "") {
+
+            media = "Brockhampton"
+     
+        }
+     
+        request("https://rest.bandsintown.com/artists/" + media + "/events?app_id=codingbootcamp", function (error, response, data) {
+     
+            try {
+     
+                var response = JSON.parse(data)
+     
+                if (response.length != 0) {
+     
+                    console.log(chalk.green(`Upcoming concerts for ${media} include:` ))
+     
+                    response.forEach(function (element) {
+     
+                        console.log(chalk.cyan("Venue name: " + element.venue.name));
+     
+                        if (element.venue.country == "United States") {
+     
+                            console.log("City: " + element.venue.city + ", " + element.venue.region);
+     
+                        } else {
+     
+                            console.log("City: " + element.venue.city + ", " + element.venue.country);
+     
+                        }
+     
+                        console.log("Date: " + moment(element.datetime).format('MM/DD/YYYY'));
+     
+                        console.log();
+     
+                    })
+     
+                } else {
+     
+                    console.log(chalk.red("No concerts found."));
+     
+                }
+     
+            }
+     
+            catch (error) {
+     
+                console.log(chalk.red("No concerts found."));
+     
+            }
+     
+        });  
 
 
     }

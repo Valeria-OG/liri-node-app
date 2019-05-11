@@ -16,12 +16,14 @@
   "bugs": {
     "url": "https://github.com/Valeria-OG/liri-node-app/issues"
   },
-  "homepage": "https://github.com/Valeria-OG/liri-node-app#readme" ,
+  "homepage": "https://github.com/Valeria-OG/liri-node-app#readme",
   "dependencies": {
     "axios": "^0.18.0",
+    "chalk": "^2.4.2",
     "dontev": "^8.0.0",
+    "dotenv": "^8.0.0",
     "moment": "^2.24.0",
-    "node-spotify-api": "^1.1.1"
-    
+    "node-spotify-api": "^1.1.1",
+    "process": "^0.11.10"
   }
 }

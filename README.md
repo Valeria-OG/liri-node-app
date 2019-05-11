@@ -20,4 +20,4 @@ node liri.js movie-this 'High School Musical'
 
 ##### You can find screenshots on how Liri looks like and how it works on the file called "screenshots".
 
-*The only thing I missing in this project is whenever you want to display "spotify-this-song", I did a lot of research on how to fix the problem I was having with that command but nothing seemed to be helpful; whenever I put 'node liri.js spotify-this-song' the only thing that appeared was 'this is loaded'.
+*The only thing I'm missing in this project is whenever you want to display "spotify-this-song", I did a lot of research on how to fix the problem I was having with that command but nothing seemed to be helpful; whenever I put 'node liri.js spotify-this-song' the only thing that appeared was 'this is loaded'.

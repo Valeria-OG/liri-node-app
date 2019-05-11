@@ -4,11 +4,11 @@
 ##### Here you will be able to find information about your favorite movies, artists, bands, as well as their concert's date and location.
 
 ## The commands that are applicable to this app are:
-*concert-this
+*concert-this : you are going to use this command if you want to search information (date, location,etc.) about any concert.
 
-*spotify-this-song
+*spotify-this-song :you are going to use this command if you want information (artist,etc,) about any song.
 
-*movie-this
+*movie-this :you are going to use this command if you want any information (actors, year when the movie was created,etc.) about any movie.
 
 *do-what-it-says
 

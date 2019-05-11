@@ -12,8 +12,7 @@
 
 *do-what-it-says
 
-##### It is important to note, that if you want to try it out you have to put first
-#### _*node liri.js*_ and then the command.
+##### It is important to note, that if you want to try it out you have to put first  _*node liri.js*_ and then the command.
 
 ### Example:
 node liri.js movie-this 'High School Musical'
